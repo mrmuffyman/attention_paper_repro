@@ -24,12 +24,12 @@ LEARNING_RATE = 0.0001
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Usage
-tfrecord_path = os.path.join(home_path, "Downloads/wiki_web2m_pytorch")
-dataset = ConvertedWikiDataset(tfrecord_path)
+# tfrecord_path = os.path.join(home_path, "Downloads/wiki_web2m_pytorch")
 
-# Add after other initializations
 sp = spm.SentencePieceProcessor()
 sp.load('spiece.model')
+
+dataset = WikinetDataset(sp_model_path='spiece.model', num_samples=10000)  # Remove tfrecord path as it's no longer needed
 
 # Add after other hyperparameters
 WARMUP_STEPS = 4000
